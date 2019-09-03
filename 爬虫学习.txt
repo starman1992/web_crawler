@@ -1,0 +1,70 @@
+requests
+get(url,params,**kwargs)
+
+response (as r)
+r.status_code   请求的返回状态
+r.text          url页面内容
+r.encoding      header中猜测的编码方式
+r.apparent_encoding    内容猜测的备选编码方式
+r.content       内容二进制形式 
+
+
+requests异常
+rq.ConnectionError    网络连接异常，dns或拒绝
+rq.HTTPError          HTTP错误
+rq.URLRequired        URL缺失
+rq.TooManyRedirects   超过最大重定向次数
+rq.ConnectTimeout     连接远程服务器超时
+rq.Timeout            请求URL超时，产生超时
+
+requests请求方式method
+get     获取url位置的资源
+head    获取url资源的头部信息
+post    请求url资源后附加的新数据
+put     请求url存储一个资源，覆盖原url位置
+patch   局部更新，资源部分内容的改变
+delete  删除url存储的资源
+
+rq.request(method,url,**kwargs)
+get和head的kwargs参数
+params对网址进行修改、data、json、headers、cookies、auth认证、files传输文件、timeout设定超时时间、proxies设定代理服务器
+allow_redirects重定向开关、stream获取立即下载开关、verify认证ssl证书开关、cert本地ssl证书路径
+
+beautifulsoup4
+from bs4 import BeautifulSoup
+soup.prettify()  美化分层数据
+soup = BeautifulSoup(r.text,'html.parser'(解释器))
+<p class='title'>..</p>    一对标签，class属性（0或多个）
+soup.name返回指定name下内容   
+name.attr 返回指定标签的属性内容，属性在标签里，不在标签下  
+标签中的字典，可以用xxx.attr[key]取(xxx是tag格式)
+name.string返回指定标签下的唯一一个字符串内容（非属性字符串NavigableString）若有多个则用.text
+name.string返回指定标签下的唯一一个注释内容（标签夹着<!--...-->）.若有多个则用.text
+
+contents返回儿子节点信息
+children循环遍历儿子节点信息（下一层）  
+descendants循环遍历子孙节点信息（所有下级层）
+parent返回父亲节点信息
+parents遍历循环父亲节点信息
+
+next_sibling      返回文本顺序下一个平行节点标签
+previous_sibling  返回文本顺序上一个平行节点标签
+加s为上面两个的迭代类型
+
+
+XML   <>..</>
+JSON  类字典有类型key:value
+YAML  单类型，无注释，简洁无类型key:value
+
+find_all(name,attrs,recursive(是否对子孙全部检索),string,**kwargs)返回多个结果的列表
+find（）返回一个结果字符串
+find_parents()搜索父辈节点
+find_next_siblings()搜索下一平行节点
+find_next_sibling()搜索一个下一平行节点
+previous_sibling（s）同上
+
+找到的文本可直接加()继续找，不需要加上find_all()
+
+bs4.element.Tag
+bs4.element.NavigableString
+bs4.element.Comment
